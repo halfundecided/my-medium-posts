@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Post } from './';
-import { Skeleton, Card, Avatar } from 'antd';
+import { Skeleton, Card, Avatar, Row, Col } from 'antd';
 import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
 
 const { Meta } = Card;
@@ -36,19 +36,27 @@ const MediumFeed = () => {
       <>
         {[...Array(4)].map((e, index) => {
           return (
-            <Card
-              key={index}
-              style={{ width: 500, marginTop: 16 }}
-              actions={[
-                <SettingOutlined key="setting" />,
-                <EditOutlined key="edit" />,
-                <EllipsisOutlined key="ellipsis" />,
-              ]}
-            >
-              <Skeleton loading={loading} avatar active>
-                <Meta avatar={<Avatar src="" />} title="" description="" />
-              </Skeleton>
-            </Card>
+            <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
+              <Card
+                key={index}
+                style={{
+                  width: 800,
+                  marginTop: 16,
+                  marginLeft: 10,
+                  marginRight: 10,
+                  marginBottom: 16,
+                }}
+                actions={[
+                  <SettingOutlined key="setting" />,
+                  <EditOutlined key="edit" />,
+                  <EllipsisOutlined key="ellipsis" />,
+                ]}
+              >
+                <Skeleton loading={loading} avatar active>
+                  <Meta avatar={<Avatar src="" />} title="" description="" />
+                </Skeleton>
+              </Card>
+            </Row>
           );
         })}
       </>

@@ -1,11 +1,16 @@
 import React from 'react';
 import { MediumFeed } from './components';
 import 'antd/dist/antd.css';
+import { Row, Col } from 'antd';
 
 function App() {
   return (
     <>
-      <MediumFeed />
+      <Row justify="center" align="middle">
+        <Col>
+          <MediumFeed />
+        </Col>
+      </Row>
     </>
   );
 }
