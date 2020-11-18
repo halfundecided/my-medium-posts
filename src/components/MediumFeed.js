@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Post } from './';
+import { Posts, Post } from './';
 import { Skeleton, Card, Avatar, Row, Col } from 'antd';
 import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
 
@@ -11,7 +11,7 @@ const MY_MEDIUM_URL =
 const MediumFeed = () => {
   const [loading, setLoading] = useState(true);
   const [profile, setProfile] = useState(null);
-  const [posts, setPosts] = useState(null);
+  const [posts, setPosts] = useState([]);
 
   const fetchMediumData = async () => {
     setLoading(true);
@@ -36,9 +36,8 @@ const MediumFeed = () => {
       <>
         {[...Array(4)].map((e, index) => {
           return (
-            <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
+            <Row key={index} gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
               <Card
-                key={index}
                 style={{
                   width: 800,
                   marginTop: 16,
@@ -64,9 +63,9 @@ const MediumFeed = () => {
   }
 
   return (
-    <>
-      <Post posts={posts} />
-    </>
+    <main>
+      <Posts posts={posts} />
+    </main>
   );
 };
 
