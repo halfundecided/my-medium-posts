@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Post } from './';
+import { Skeleton, Card, Avatar } from 'antd';
+import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
+
+const { Meta } = Card;
 
 const MY_MEDIUM_URL =
   'https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@halfundecided';
@@ -28,7 +32,27 @@ const MediumFeed = () => {
   }, []);
 
   if (loading) {
-    return <div>loading...</div>;
+    return (
+      <>
+        {[...Array(4)].map((e, index) => {
+          return (
+            <Card
+              key={index}
+              style={{ width: 500, marginTop: 16 }}
+              actions={[
+                <SettingOutlined key="setting" />,
+                <EditOutlined key="edit" />,
+                <EllipsisOutlined key="ellipsis" />,
+              ]}
+            >
+              <Skeleton loading={loading} avatar active>
+                <Meta avatar={<Avatar src="" />} title="" description="" />
+              </Skeleton>
+            </Card>
+          );
+        })}
+      </>
+    );
   }
 
   return (
