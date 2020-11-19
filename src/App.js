@@ -6,7 +6,7 @@ import { Row, Col } from 'antd';
 function App() {
   return (
     <>
-      <Row justify="center" align="middle">
+      <Row justify="center">
         <Col>
           <MediumFeed />
         </Col>

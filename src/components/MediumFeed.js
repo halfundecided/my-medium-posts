@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Posts, Post } from './';
-import { Skeleton, Card, Avatar, Row, Col } from 'antd';
+import { Posts } from './';
+import { Skeleton, Card, Avatar, Row } from 'antd';
 import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
 
 const { Meta } = Card;
@@ -40,10 +40,9 @@ const MediumFeed = () => {
               <Card
                 style={{
                   width: 800,
-                  marginTop: 16,
-                  marginLeft: 10,
-                  marginRight: 10,
-                  marginBottom: 16,
+                  marginTop: 10,
+                  marginLeft: 15,
+                  marginRight: 15,
                 }}
                 actions={[
                   <SettingOutlined key="setting" />,
@@ -63,9 +62,9 @@ const MediumFeed = () => {
   }
 
   return (
-    <main>
+    <>
       <Posts posts={posts} />
-    </main>
+    </>
   );
 };
 
