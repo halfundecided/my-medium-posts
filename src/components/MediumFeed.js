@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Posts } from './';
-import { Skeleton, Card, Avatar, Row } from 'antd';
-import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
+import { Skeleton, Card, Avatar, Row, PageHeader, Tag, Divider } from 'antd';
+import { EditOutlined, EllipsisOutlined, SettingOutlined, SyncOutlined } from '@ant-design/icons';
 
 const { Meta } = Card;
 
@@ -18,9 +18,9 @@ const MediumFeed = () => {
     try {
       const res = await fetch(MY_MEDIUM_URL);
       const fetchedData = await res.json();
-      setLoading(false);
       setProfile(fetchedData.feed);
       setPosts(fetchedData.items);
+      setLoading(false);
     } catch (err) {
       setLoading(false);
       console.log(err);
@@ -31,15 +31,26 @@ const MediumFeed = () => {
     fetchMediumData();
   }, []);
 
-  if (loading) {
-    return (
-      <>
-        {[...Array(4)].map((e, index) => {
+  return (
+    <>
+      <PageHeader
+        title={profile.title}
+        tags={
+          <Tag icon={<SyncOutlined spin />} color="geekblue">
+            Sometimes Writing
+          </Tag>
+        }
+        avatar={{ src: profile.image }}
+        style={{ marginTop: 20 }}
+      ></PageHeader>
+      <Divider orientation="right">Posts</Divider>
+      {loading ? (
+        [...Array(4)].map((e, index) => {
           return (
             <Row key={index} gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
               <Card
                 style={{
-                  width: 800,
+                  width: 1000,
                   marginTop: 10,
                   marginLeft: 15,
                   marginRight: 15,
@@ -56,14 +67,10 @@ const MediumFeed = () => {
               </Card>
             </Row>
           );
-        })}
-      </>
-    );
-  }
-
-  return (
-    <>
-      <Posts posts={posts} />
+        })
+      ) : (
+        <Posts posts={posts} />
+      )}
     </>
   );
 };

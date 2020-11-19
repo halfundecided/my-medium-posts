@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Card } from 'antd';
-import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
+import { Card, Button } from 'antd';
+import { SearchOutlined } from '@ant-design/icons';
 
 const { Meta } = Card;
 
@@ -15,11 +15,7 @@ const Post = ({ post }) => {
         marginRight: 15,
       }}
       cover={<img alt={title} src={thumbnail} height="200" style={{ objectFit: `cover` }} />}
-      actions={[
-        <SettingOutlined key="setting" />,
-        <EditOutlined key="edit" />,
-        <EllipsisOutlined key="ellipsis" />,
-      ]}
+      actions={[<Button type="dashed" shape="circle" href={link} icon={<SearchOutlined />} />]}
     >
       <Meta title={title} description={pubDate} />
     </Card>
